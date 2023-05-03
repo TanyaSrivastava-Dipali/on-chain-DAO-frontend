@@ -4,8 +4,8 @@ import {
   TOKEN_ABI
 } from "../contract/constants";
 import { ethers } from "ethers";
-import { BigNumber } from "ethers";
 import { useNavigate } from "react-router-dom";
+import connectToMetamask from "../utils/connectTometamask";
 
 
 const DelegateVotingPower = () => {
@@ -13,22 +13,20 @@ const DelegateVotingPower = () => {
   const navigate = useNavigate();
 
   const handleChange = async (e) => {
+    
     setAddress(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      navigate("/");
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer= provider.getSigner();
+      const [provider, accounts, signer] = await connectToMetamask();
       const contract = new ethers.Contract(
         TOKEN_CONTRACT_ADDRESS,
         TOKEN_ABI,
         signer
       );
-      console.log(signer.address);
-      const tx =  await contract.connect(signer).delegate(signer.address);
+      const tx =  await contract.connect(signer).delegate(address);
       const txFinality = await tx.wait();
       console.log(txFinality);
       if (txFinality.blockNumber === null) {
@@ -39,7 +37,7 @@ const signer= provider.getSigner();
    } catch (error) {
       console.error(error.message);
     }
-  }
+  };
   return (
     <>
       <p className="font-normal text-gray-400 text-center">

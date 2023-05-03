@@ -31,6 +31,7 @@ const Treasury = () => {
       e.preventDefault();
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
+      console.log(signer);
       const data = {
         to: TREASURY_CONTRACT_ADDRESS,
         value: ethers.utils.parseUnits(ether, 18),

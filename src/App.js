@@ -8,6 +8,7 @@ import Vote from "./pages/Vote";
 import Treasury from "./pages/Treasury";
 import Aboutpage from "./pages/About";
 import Delegate from "./pages/Delegate";
+import DetailsPage from "./pages/DetailsPage";
 
 const userContext = createContext();
 const toggleModeContext = createContext();
@@ -42,6 +43,7 @@ function App() {
       <Route path="/about" element={<Aboutpage />} />
       <Route path="/create/" element={<NewProposal />} />
       <Route path="/allProposal/" element={<AllProposal />} />
+      <Route path="/Details/:id" element={<DetailsPage />} />  
       <Route path="/vote/" element={<Vote />} />
       <Route path="/treasury/" element={<Treasury />} />
       <Route path="/Delegate" element={<Delegate/>} />
