@@ -6,7 +6,7 @@ import {
 } from "../contract/constants";
 import { ethers } from "ethers";
 import { useParams } from "react-router-dom";
-import { userContext } from "../App";
+import { userContext,toggleModeContext } from "../App";
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 
@@ -63,11 +63,13 @@ const Vote = () => {
     fetchVotingDetails();
   }, [provider]);
 
+  const { darkMode } =  useContext(toggleModeContext);
+
   return (
     <>
-      <div>
+        <div className={darkMode ? ' text-gray-100' : ' text-gray-700 '}>
         <ul
-          className="mx-auto max-w-2xl mt-5 text-lg font-medium   rounded-lg border   border-gray-600 text-white"
+          className="mx-auto max-w-2xl mt-5 text-lg font-medium   rounded-lg border   border-gray-600 "
           style={{ borderColor: "#2d2d2d" }}
         >
           <li
@@ -82,10 +84,10 @@ const Vote = () => {
           >
             {VoteFor.map((vote) => (
               <button
-                className="text-white ml-5 mt-5 mx-auto font-bold w-11/12  py-2 rounded-full border"
+                className=" ml-5 mt-5 mx-auto font-bold w-11/12  py-2 rounded-full border"
                 style={{
                   borderColor:
-                    selectedVote === vote.voteId ? "#ffffff" : "#2d2d2d",
+                    selectedVote === vote.voteId ? "#3b82f6" : "#fee2e2",
                 }}
                 onClick={() => setSelectVote(vote.voteId)}
               >
@@ -94,7 +96,7 @@ const Vote = () => {
             ))}
             {user.isConnected && (
               <button
-                className="text-white ml-5 mt-5 mb-5 bg-blue-600 w-11/12  mx-auto font-bold  py-2 rounded-full border"
+                className=" ml-5 mt-5 mb-5 bg-blue-600 w-11/12  mx-auto font-bold  py-2 rounded-full border"
                 style={{ borderColor: "#2d2d2d" }}
                 onClick={() => setOpenVoteModal(true)}
               >
@@ -111,7 +113,7 @@ const Vote = () => {
       </div>
       <div>
         <ul
-          className="mx-auto max-w-2xl my-5 text-lg font-medium   rounded-lg border   border-gray-600 text-white"
+          className="mx-auto max-w-2xl my-5 text-lg font-medium   rounded-lg border   border-gray-600 "
           style={{ borderColor: "#2d2d2d" }}
         >
           <li

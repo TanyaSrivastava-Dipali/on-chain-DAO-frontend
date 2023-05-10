@@ -1,63 +1,65 @@
-import React from "react";
+import React, { useContext } from "react";
+import { toggleModeContext } from "../App";
 
 const Sidetabs = () => {
+  const { darkMode } =  useContext(toggleModeContext);
   return (
-    <div>
+    <div className={darkMode ? ' text-gray-100' : ' text-gray-700 '}>
       <div>
         <ul
-          className="mx-auto w-72 mt-5 font-normal  rounded-lg border border-gray-600 text-white"
-          style={{ borderColor: "#2d2d2d" }}
+          className="mx-auto w-72 mt-5  rounded-lg border border-gray-600 "
+       
         >
           <li
-            className="py-2 px-4 w-full rounded-t-lg border-b border-gray-600"
-            style={{ borderColor: "#2d2d2d" }}
+            className="py-2 px-4 w-full font-bold rounded-t-lg border-b border-gray-600"
+         
           >
             information
           </li>
           <li
             className="flex flex-row justify-between py-2 px-4 w-full border-b border-gray-600"
-            style={{ borderColor: "#2d2d2d" }}
+         
           >
-            <div style={{ color: "#8b949e" }}>IPFS</div>
-            <div className="text-white">#bafkrei</div>
+            <div  className="font-bold">IPFS</div>
+            <div className="">#bafkrei</div>
           </li>
           <li
             className="flex flex-row justify-between py-2 px-4 w-full border-b border-gray-600"
             style={{ borderColor: "#2d2d2d" }}
           >
-            <div style={{ color: "#8b949e" }}>Voting system</div>
-            <div className="text-white">Single choice voting</div>
+            <div  className="font-bold">Voting system</div>
+            <div className="">Single choice voting</div>
           </li>
           <li
             className="flex flex-row justify-between py-2 px-4 w-full border-b border-gray-600"
             style={{ borderColor: "#2d2d2d" }}
           >
-            <div style={{ color: "#8b949e" }}>Start date</div>
-            <div className="text-white">Jul 12, 2022, 7:47 PM</div>
+            <div  className="font-bold">Start date</div>
+            <div className="">Jul 12, 2022, 7:47 PM</div>
           </li>
           <li
             className="flex flex-row justify-between py-2 px-4 w-full border-b border-gray-600"
             style={{ borderColor: "#2d2d2d" }}
           >
-            <div style={{ color: "#8b949e" }}>End date</div>
-            <div className="text-white">Jul 16, 2022, 2:30 PM</div>
+            <div  className="font-bold">End date</div>
+            <div className="">Jul 16, 2022, 2:30 PM</div>
           </li>
           <li
             className="flex flex-row justify-between py-2 px-4 w-full border-b border-gray-600"
             style={{ borderColor: "#2d2d2d" }}
           >
-            <div style={{ color: "#8b949e" }}>Snapshot</div>
-            <div className="text-white">15,128,294</div>
+            <div  className="font-bold">Snapshot</div>
+            <div className="">15,128,294</div>
           </li>
         </ul>
       </div>
       <div>
         <ul
-          className="mx-auto w-72 mt-5 font-normal  rounded-lg border border-gray-600 text-white"
+          className="mx-auto w-72 mt-5 font-normal  rounded-lg border border-gray-600"
           style={{ borderColor: "#2d2d2d" }}
         >
           <li
-            className="py-2 px-4 w-full rounded-t-lg border-b border-gray-600"
+            className="py-2 px-4 w-full rounded-t-lg border-b border-gray-600 font-bold"
             style={{ borderColor: "#2d2d2d" }}
           >
             Admins

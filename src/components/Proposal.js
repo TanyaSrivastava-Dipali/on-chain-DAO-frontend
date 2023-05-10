@@ -1,6 +1,8 @@
 import React, { useState,useContext } from "react";
+import { Link } from "react-router-dom";
 import useInput from "../hooks/use-input";
 import { userContext } from "../App";
+import { toggleModeContext} from "../App.js";
 import { ethers } from "ethers";
 import { TREASURY_CONTRACT_ADDRESS, TREASURY_ABI,GOVERNANCE_ABI,GOVERNANCE_CONTRACT_ADDRESS } from "../contract/constants";
 import connectToMetamask from "../utils/connectTometamask";
@@ -47,9 +49,7 @@ const treasury = new ethers.Contract(TREASURY_CONTRACT_ADDRESS, TREASURY_ABI, si
  
 const getValueForTreasury = await treasury.interface.encodeFunctionData(
   "releaseFunds",
-  [
-    addressValue
-  ]
+  [addressValue, ethers.utils.parseUnits(amountValue, 18)]
 );
 const proposal = await gov.propose(
   [treasury.address],
@@ -104,9 +104,20 @@ const listenToEvent = async () => {
   );
 };
 
+const { darkMode } =  useContext(toggleModeContext);
   return (
     <>
-     <div>
+     <div className={darkMode ? 'bg-dark-bg text-white mr-5' : 'bg-white text-black mr-5'}>
+
+     <div className="mx-auto  max-w-2xl mt-9">
+          <Link
+            to="/home"
+            className="mt-5 px-4 py-2 mb-10 rounded-lg border shadow-md hover:bg-gray-100 hover:text-black"
+          >
+            Go back home
+          </Link>
+        </div>
+        
         {eventLogs.reverse().map((event, index) => {
           return (
             <div key={index}>
@@ -114,10 +125,10 @@ const listenToEvent = async () => {
                 className="md:mx-auto mt-5 block p-6 m-2 max-w-4xl rounded-lg border shadow-md hover:bg-gray-100 sm:mx-5"
                 style={{ borderColor: "#2d2d2d" }}
               >
-                <p className="font-normal text-gray-400">
+                <p className="font-normal ">
                   Proposal Id : {event.proposalId}
                 </p>
-                <p className="font-normal text-gray-400">
+                <p className="font-normal ">
                   Proposer Address : {event.proposer}
                 </p>
               </div>
@@ -129,7 +140,7 @@ const listenToEvent = async () => {
     <form onSubmit={handleSubmit}>
               <label
                 htmlFor="title"
-                className="block mt-10 mb-2 mx-auto max-w-2xl text-sm font-normal text-gray-400 "
+                className="block mt-10 mb-2 mx-auto max-w-2xl text-sm font-normal  "
               >
                 To
               </label>
@@ -150,12 +161,12 @@ const listenToEvent = async () => {
  
               <label
                 htmlFor="message"
-                className=" mt-10 block  mb-2 text-sm font-medium text-gray-400 mx-auto max-w-2xl "
+                className=" mt-10 block  mb-2 text-sm font-medium  mx-auto max-w-2xl "
               >
                 Amount
               </label>
               <input
-                type="number"
+                type="text"
                 id="amount"
                 // rows="6"
                 name="amount"
@@ -170,7 +181,7 @@ const listenToEvent = async () => {
                 )}
               <label
                 htmlFor="discussion"
-                className="block mt-10 mx-auto max-w-2xl text-sm font-normal text-gray-400 mb-2"
+                className="block mt-10 mx-auto max-w-2xl text-sm font-normal  mb-2"
               >
                 Discussion
               </label>
@@ -194,12 +205,13 @@ const listenToEvent = async () => {
         <button
           disabled={!formIsValid}
           type="submit"
-          className="mt-5 px-4 py-2 mb-10 rounded-lg border shadow-md hover:bg-gray-100 text-white hover:text-black"
+          className="mt-5 px-4 py-2 mb-10 rounded-lg border shadow-md hover:bg-gray-100 hover:text-black"
         >
           Create a Proposal
         </button>
       </div>
       )}  
+       
        {!user.isConnected && (
                 <div className="block mt-10 mx-auto max-w-2xl font-normal">
                   <h1>connect metamask wallet first</h1>

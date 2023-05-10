@@ -624,12 +624,7 @@ export const TOKEN_ABI =[
 ];
 
 export const TREASURY_CONTRACT_ADDRESS = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9";
-export const TREASURY_ABI =[
-  {
-    "inputs": [],
-    "stateMutability": "payable",
-    "type": "constructor"
-  },
+export const TREASURY_ABI = [
   {
     "anonymous": false,
     "inputs": [
@@ -651,19 +646,6 @@ export const TREASURY_ABI =[
   },
   {
     "inputs": [],
-    "name": "isReleased",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "owner",
     "outputs": [
       {
@@ -678,9 +660,14 @@ export const TREASURY_ABI =[
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "_payee",
+        "internalType": "address payable",
+        "name": "payee",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
       }
     ],
     "name": "releaseFunds",
@@ -693,19 +680,6 @@ export const TREASURY_ABI =[
     "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "totalFunds",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {

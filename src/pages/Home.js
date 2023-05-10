@@ -24,8 +24,8 @@ function Home() {
         const blockNumber = await provider.getBlockNumber();
         const items = await contract.queryFilter(
           filteredDataCopy,
-          blockNumber - 950,
-          blockNumber - 2,
+          blockNumber - 10000,
+          blockNumber ,
         );
         // const proposalId = items.map((item) =>
         //   web3.utils.hexToNumberString(item.args[0])

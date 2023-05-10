@@ -37,7 +37,7 @@ const Card = (props) => {
     <div>
       <NavLink
         to={`/${
-          state === "1" || state === "4" || state === "5" ? `Details/${data}` : ""
+          state === "1" || state === "4" || state === "5"? `Details/${data}` : ""
         }`}
       >
         <div

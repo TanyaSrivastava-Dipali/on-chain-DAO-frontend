@@ -1,10 +1,8 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { createContext, useState,useEffect } from "react";
 import {Home} from "./pages/Home";
-import AllProposal from "./pages/AllProposal";
 import NewProposal from "./pages/NewProposal";
 import NotFound from "./pages/NotFound";
-import Vote from "./pages/Vote";
 import Treasury from "./pages/Treasury";
 import Aboutpage from "./pages/About";
 import Delegate from "./pages/Delegate";
@@ -42,9 +40,7 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/about" element={<Aboutpage />} />
       <Route path="/create/" element={<NewProposal />} />
-      <Route path="/allProposal/" element={<AllProposal />} />
       <Route path="/Details/:id" element={<DetailsPage />} />  
-      <Route path="/vote/" element={<Vote />} />
       <Route path="/treasury/" element={<Treasury />} />
       <Route path="/Delegate" element={<Delegate/>} />
       <Route path="*" element={<NotFound />} />
