@@ -31,7 +31,7 @@ function App() {
 
 
   return (
-    <div className={darkMode ? 'bg-dark-bg text-white' : 'bg-light-bg text-black '}>
+    <div className={darkMode ? 'bg-dark-bg text-white h-screen' : 'bg-light-bg text-black h-screen'}>
         <userContext.Provider value={{ user, setUser }}>
     <toggleModeContext.Provider value={{ toggleDarkMode, darkMode }} >
 
